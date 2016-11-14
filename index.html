@@ -17,27 +17,17 @@
     main {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      justify-content: center;
       align-items: center;
+      margin-top: 50px;
     }
-    main>*{
+    section{
       padding: 20px;
-    }
-    header {
-      font-size: 3em;
-      margin-bottom: 20px;
-    }
-    footer {
       color: #ddd;
     }
-    footer span {
-      text-decoration: line-through;
-    }
-    footer .active {
-      text-decoration: none;
-      color: black;
+    .active {
+      font-size: 3em;
       font-weight: 600;
+      color: black;
     }
   </style>
 
@@ -79,13 +69,17 @@
 </head>
 <body>
   <main>
-    <header>
-      <b><script>document.write(on_duty);</script></b>
-      , you are on bug duty!
-    </header>
-    <footer>
-      <script>document.write(members.map(function(m){ return " <span class='" + (on_duty == m ? 'active' : '') + "'>" + m + "</span>" }));</script>
-    </footer>
+    <section>
+      <script>
+        members.map(function(m){
+          document.write(
+            "<div class='" + (on_duty == m ? 'active' : '') + "'>" +
+              (on_duty == m ? (m + ", you are on bug duty!") : m) +
+            "</div>"
+          );
+        });
+      </script>
+    </section>
   </main>
 </body>
 </html>
