@@ -16,10 +16,28 @@
     /****************/
     main {
       display: flex;
+      flex-direction: column;
       height: 100vh;
       justify-content: center;
       align-items: center;
+    }
+    main>*{
+      padding: 20px;
+    }
+    header {
       font-size: 3em;
+      margin-bottom: 20px;
+    }
+    footer {
+      color: #ddd;
+    }
+    footer span {
+      text-decoration: line-through;
+    }
+    footer .active {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
     }
   </style>
 
@@ -62,13 +80,12 @@
 <body>
   <main>
     <header>
-      <b>
-        <script>
-          document.write(on_duty);
-        </script>
-      </b>
+      <b><script>document.write(on_duty);</script></b>
       , you are on bug duty!
     </header>
+    <footer>
+      <script>document.write(members.map(function(m){ return " <span class='" + (on_duty == m ? 'active' : '') + "'>" + m + "</span>" }));</script>
+    </footer>
   </main>
 </body>
 </html>
