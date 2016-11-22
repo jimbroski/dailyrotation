@@ -20,7 +20,7 @@
       align-items: center;
       margin-top: 50px;
     }
-    section{
+    header{
       padding: 20px;
       color: #ddd;
     }
@@ -70,7 +70,7 @@
 </head>
 <body>
   <main>
-    <section>
+    <header>
       <script>
         members.map(function(m){
           document.write(
@@ -80,7 +80,15 @@
           );
         });
       </script>
-    </section>
+    </header>
+    <footer>
+      <p>Bug duty consists of:</p>
+      <ul>
+        <li>Checking the LX -> Bugs board for new bugs, <b>categorizing them by priority (!)</b> and fixing them</li>
+        <li>Checking NewRelic for incoming errors of the past 24 hours and fixing them</li>
+      </ul>
+
+    </footer>
   </main>
 </body>
 </html>
