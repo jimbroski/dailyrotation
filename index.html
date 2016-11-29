@@ -11,6 +11,7 @@
   <!-- Favicons -->
 
   <!-- CSS -->
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
   <style>
     /*! normalize.css v3.0.2 | MIT License | git.io/normalize */img,legend{border:0}legend,td,th{padding:0}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,optgroup,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre,textarea{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}table{border-collapse:collapse;border-spacing:0}
     /****************/
@@ -23,6 +24,15 @@
     header{
       padding: 20px;
       color: #ddd;
+    }
+    footer {
+      padding: 20px;
+    }
+    footer li {
+      padding: 15px;
+      margin: 10px;
+      border: 1px solid #dedede;
+      border-radius: 2px;
     }
     .active {
       font-size: 3em;
@@ -84,12 +94,12 @@
     <footer>
       <h3>Please follow these steps:</h3>
       <ol>
-        <li>Check NewRelic for errors in the past 24 hours.</li>
-        <li><b>Move all bugs from the "External Reports" group to any of the priority groups.</b> That makes it easier for the rest of the team. The "External Reports" group should be kept empty.</li>
-        <li>When you are on duty, you assign <b>all unassigned bugs</b> to yourself (from all priority groups!).</li>
-        <li>Now fix everything that's assigned to you.</li>
-        <li>We all are busy with projects. So if you can't fix all bugs <b>please unassign yourself</b> but put yourself in the "Support" column</li>
-        <li><b>Archive tasks</b> that are either fixed or more than 7 days on hold or waiting for a response</li>
+        <li><i class="em em-flashlight"></i> Check NewRelic for errors in the past 24 hours.</li>
+        <li><i class="em em-pushpin"></i> <b>Move all bugs from the "External Reports" group to any of the priority groups.</b> That makes it easier for the rest of the team. The "External Reports" group should be kept empty.</li>
+        <li><i class="em em-raising_hand"></i> When you are on duty, you assign <b>all unassigned bugs</b> to yourself (from all priority groups!).</li>
+        <li><i class="em em-wrench"></i> Now fix everything that's assigned to you.</li>
+        <li><i class="em em-telephone_receiver"></i> We all are busy with projects. So if you can't fix all bugs <b>please unassign yourself</b> but put yourself in the "Support" column</li>
+        <li><i class="em em-file_folder"></i> <b>Archive tasks</b> that are either fixed or more than 7 days on hold or waiting for a response</li>
       </ol>
     </footer>
   </main>
