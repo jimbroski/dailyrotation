@@ -5,55 +5,105 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daily Rotation</title>
+  <title>Who is on bug duty?</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <!-- Favicons -->
 
   <!-- CSS -->
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
   <style>
     /*! normalize.css v3.0.2 | MIT License | git.io/normalize */img,legend{border:0}legend,td,th{padding:0}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,optgroup,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre,textarea{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}table{border-collapse:collapse;border-spacing:0}
     /****************/
     main {
       display: flex;
-      height: 100vh;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      margin-top: 50px;
+    }
+    header{
+      padding: 20px;
+      color: #ddd;
+    }
+    footer {
+      padding: 20px;
+    }
+    footer h2 {
+      text-align: center;
+    }
+    footer li {
+      padding: 15px;
+      margin: 10px;
+      border: 1px solid #dedede;
+      border-radius: 2px;
+    }
+    .active {
       font-size: 3em;
+      font-weight: 600;
+      color: black;
     }
   </style>
 
   <!-- JavaScript -->
   <script>
-    var members = ["Cato", "Sam", "Blake", "Brett", "Julia", "Sean", "Marco", "Paulo"];
+    function dateOfDay(day){
+      var new_day = new Date(day * 1000 * 60 * 60 * 24);
+      return new_day;
+    }
 
-    var on_duty;
-    var new_date = new Date(),
-        today = new_date.getTime(),
-        day_count = parseInt(today / 1000 / 60 / 60 / 24);
+    function dateToDay(date){
+      var new_date = (typeof date != 'undefined') ? new Date(date) : new Date(),
+          time_in_days = new_date.getTime();
+      return parseInt(time_in_days / 1000 / 60 / 60 / 24);
+    }
 
-    for(index = 0; index < members.length; index++){
-      var member = members[index];
+    var on_duty,
+        counter = 0,
+        members = ["Cato", "Sam", "Blake", "Brett", "Julia", "Sean", "Marco", "Paulo"];
 
-      for (i = index; i <= day_count; i += 8) {
-        if(i == day_count){
-          var on_duty = member;
-          break;
+    var start_date_count = dateToDay(1478476800000),
+        today_count = dateToDay();
+
+    for(i = start_date_count; i <= today_count; i++){ // Loop through all days since start date til today
+      var weekday = dateOfDay(i).getDay();
+
+      if(!(weekday == 0) && !(weekday == 6)){ // if it's a weekday
+        on_duty = members[counter];
+        if(counter < (members.length - 1)){ // loop through members and start over when reaching the end
+          counter++
+        }else{
+          counter = 0;
         }
+      }else{
+        on_duty = "weekend";
       }
     }
+
   </script>
 </head>
 <body>
   <main>
     <header>
-      <b>
-        <script>
-          document.write(on_duty);
-        </script>
-      </b>
-      , you are on duty!
+      <script>
+        members.map(function(m){
+          document.write(
+            "<div class='" + (on_duty == m ? 'active' : '') + "'>" +
+              (on_duty == m ? (m + ", you are on bug duty!") : m) +
+            "</div>"
+          );
+        });
+      </script>
     </header>
+    <footer>
+      <h2>New Instructions!</h2>
+      <ol>
+        <li><i class="em em-flashlight"></i> Create bug reports from issues appearing in the <i>#new_relic</i> Slack channel.</li>
+        <li><i class="em em-wrench"></i> Fix <b>and then archive</b> all bugs one by one! (Archive anything that's waiting for a response longer than 7 days.)</li>
+        <li><i class="em em-raising_hand"></i> <b>It's your job to keep the <u>whole</u> bug board empty</b> throughout the day!</li>
+        <li><i class="em em-file_folder"></i> For bigger issues write a story card. It's your job to provide immediate help to fix the issue - <u>not</u> the root of the problem.</li>
+        <li><i class="em em-telephone_receiver"></i> If the necessary people don't respond within a day unassign yourself and assign yourself as "Support".</li>
+      </ol>
+    </footer>
   </main>
 </body>
 </html>
